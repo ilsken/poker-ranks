@@ -77,9 +77,11 @@ namespace Poker {
         }
         
         s = ranks.to_ulong();
+        
+        // I'm still not 100% sure why this works
         index =  index % 15 - 1;
 
-        // Normalize LSB using two's complement
+        // Normalize LSB using two's complement and test for straights
         // 0x31 is the binary representation of 5 sequential ranks being set
         // 0x201e is the binary representation of a low-ace straight (1 in MSB, 4 in LSB)
         if ((s / (s & -s)) == 31 || s == 0x201e) {
